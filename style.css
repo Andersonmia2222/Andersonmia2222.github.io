@@ -1,93 +1,454 @@
-/* ========== GLOBAL STYLES ========== */
-body {
-  font-family: 'Spectral', serif;
-  background-color: #fcdee3;
-  scroll-behavior: smooth;
-}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Addison's Disease Awareness — Mia Anderson</title>
+  <meta name="description" content="Clear, student‑made guide to Addison’s disease: symptoms, causes, treatment, crisis protocol, FAQs, and credible resources. Created by Mia Anderson." />
+  <meta name="theme-color" content="#0b132b" />
 
-h1, h2, h3 {}
-  font-family: 'Emilys Candy', cursive;
-}
+  <!-- Open Graph / Twitter for clean previews when you email or share the link -->
+  <meta property="og:title" content="Addison's Disease Awareness — Mia Anderson" />
+  <meta property="og:description" content="Clear, student‑made guide to Addison’s disease with crisis protocol and resources." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630'%3E%3Crect width='1200' height='630' fill='%231d4ed8'/%3E%3Ctext x='60' y='330' fill='white' font-size='72' font-family='Georgia, serif'%3EAddison%27s Awareness%3C/text%3E%3C/svg%3E" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-section {
-  padding-top: 60px;
-  padding-bottom: 60px;
-}
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400;600;700&family=Emilys+Candy&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
 
-/* ========== HERO ========== */
-#hero h1 {
-  font-size: 3rem;
-  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-}
+  <!-- Accessibility: skip link -->
+  <style>
+  :root{
+    --brand:#1d4ed8;          /* calm blue accent */
+    --ink:#0b1020;            /* main text */
+    --muted:#475569;          /* secondary text */
+    --bg:#f6f7fb;             /* page background */
+    --panel:#ffffff;          /* cards/nav */
+    --line:#e5e7eb;           /* hairlines */
+    --danger:#b91c1c;         /* emergency band */
+  }
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Spectral', system-ui, -apple-system, Segoe UI, Roboto, Arial, serif;
+    color:var(--ink);
+    background:var(--bg);
+    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  }
+  a{color:var(--brand); text-decoration:none}
+  a:hover{opacity:.9; text-decoration:underline}
 
-#hero p {
-  font-size: 1.3rem;
-  margin-top: 10px;
-}
+  /* Headings: elegant but readable */
+  h1,h2,h3{font-family:'Emilys Candy', serif; letter-spacing:.3px; color:var(--ink)}
+  h1{font-size:clamp(2rem,4.5vw,3.25rem)}
+  h2{font-size:clamp(1.4rem,3vw,2rem); margin-bottom:.75rem}
+  h3{font-size:1.15rem}
 
-.glowing-text {
-  animation: glow 1.5s ease-in-out infinite;
-  color: rgb(237, 38, 197);
-}
+  /* Make key words stand out, without wild colors */
+  strong{font-weight:700}
+  mark, .highlight{background:linear-gradient(120deg, rgba(29,78,216,.16), rgba(29,78,216,0));
+    padding:0 .2em; border-radius:.2em}
+  .eyebrow{font-variant-caps:all-small-caps; letter-spacing:.08em; color:var(--muted)}
+  .lead{font-size:1.125rem}
+  .lead-strong{font-size:1.125rem; font-weight:600}
 
-@keyframes glow {
-  0% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
-  50% { text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
-  100% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
-}
+  /* Navbar */
+  .navbar{backdrop-filter:saturate(1.2) blur(6px); background:rgba(11,19,43,.85)!important}
+  .navbar-brand{font-family:'Emilys Candy', serif}
+  .nav-link{color:#e5e7eb !important; margin:0 .25rem}
+  .nav-link.active{color:#fff !important; text-decoration:underline; text-underline-offset:4px}
 
-/* ========== NAVBAR ========== */
-.navbar {
-  transition: background-color 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
+  /* Hero: tone down glow, keep focus on words */
+  .hero{min-height:100vh; color:#fff;
+    background:linear-gradient(180deg, rgba(11,19,43,.6), rgba(11,19,43,.6)),
+      url('https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat}
+  .hero h1{ text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  .glow{position:relative}
+  .glow:after{content:""; position:absolute; inset:-6px; z-index:-1; filter:blur(14px);
+    background:radial-gradient(60% 60% at 50% 50%, rgba(96,165,250,.45), transparent 70%); opacity:.35; border-radius:16px}
 
-.nav-link {
-  color: #fff !important;
-  margin: 0 10px;
-  font-weight: 500;
-}
+  /* Sections & cards */
+  section{padding:60px 0}
+  .section-soft{background:#f3f6fb}
+  .card{border:1px solid var(--line); background:var(--panel); border-radius:.75rem}
+  .fact-card .card-body{display:flex; flex-direction:column}
+  .callout{border-left:4px solid var(--brand); background:#eef2ff; padding:1rem 1.25rem; border-radius:.5rem}
 
-.nav-link:hover {
-  text-decoration: underline;
-}
+  /* Symptom tiles */
+  .symptom{padding:14px 16px; border-radius:.75rem; background:var(--panel); border:1px solid var(--line)}
 
-/* ========== SECTION STYLES ========== */
-.bg-light {
-  background-color: #f8f9fa !important;
-}
+  /* Emergency band — restrained but clear */
+  .emergency{background:linear-gradient(90deg, var(--danger), #7f1d1d); color:#fff}
+  .emergency .badge{background:#111827}
 
-.bg-danger {
-  background-color: #dc3545 !important;
-}
+  /* Accordion */
+  .accordion-button{font-weight:700; background:#fff}
+  .accordion-button:focus{box-shadow:none}
 
-section h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #333;
-  text-align: center;
-}
+  /* Footer */
+  footer{background:#0b132b; color:#e5e7eb}
+  .tiny{font-size:.92rem; color:#cbd5e1}
 
-section p, section ul, section li {
-  font-size: 1.1rem;
-  color: #333;
-}
+  /* Back to top */
+  #scrollTopBtn{position:fixed; right:1rem; bottom:1rem; border:none; border-radius:999px;
+    padding:.6rem .8rem; display:none; box-shadow:0 8px 20px rgba(0,0,0,.2)}
+  #scrollTopBtn i{font-size:1.05rem}
 
-.row > .col-md-4 {
-  padding: 15px;
-  background: #fff;
-  margin: 10px 0;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+  /* Print: clean, admissions-friendly */
+  @media print{
+    .navbar, #scrollTopBtn, .btn, .accordion-button::after{display:none !important}
+    a::after{content:" (" attr(href) ")"; font-size:10pt}
+    .hero{min-height:auto}
+    .card{break-inside:avoid}
+  }
+</style>
 
-/* ========== ACCORDION ========== */
-.accordion-button {
-  font-weight: bold;
-  background-color: #fff3f7;
-  color: #333;
-}
+  <!-- JSON-LD: structured data for a polished impression -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Addison's Disease Awareness — Mia Anderson",
+    "url": "https://example.com/addisons-awareness",
+    "about": {
+      "@type": "MedicalCondition",
+      "name": "Primary Adrenal Insufficiency (Addison's Disease)"
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "Mia Anderson",
+      "sameAs": []
+    }
+  }
+  </script>
+</head>
 
-.accordion-button:focus {
-  box-shadow: none;
-}
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="90" tabindex="0">
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Navbar -->
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#hero"><i class="bi bi-heart-pulse me-2"></i>Addison's Awareness</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navcol" aria-controls="navcol" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navcol">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#symptoms">Symptoms</a></li>
+          <li class="nav-item"><a class="nav-link" href="#causes">Causes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#treatment">Treatment</a></li>
+          <li class="nav-item"><a class="nav-link" href="#living">Living With It</a></li>
+          <li class="nav-item"><a class="nav-link" href="#emergency">Emergency</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#resources">Resources</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header id="hero" class="hero d-flex align-items-center justify-content-center text-center">
+    <div class="container py-5">
+      <span class="badge bg-light text-dark mb-3"><i class="bi bi-mortarboard me-1"></i> Student Project</span>
+      <h1 class="mb-3">Understanding Addison's Disease</h1>
+      <p class="lead mx-auto">Raising awareness and empowering patients, families, and classmates with clear, credible information about primary adrenal insufficiency.</p>
+      <div class="mt-4 d-flex flex-wrap gap-2 justify-content-center">
+        <span class="chip"><i class="bi bi-journal-medical"></i><span class="ms-1">Endocrine Health</span></span>
+        <span class="chip"><i class="bi bi-lightning-charge"></i><span class="ms-1">Stress Dosing</span></span>
+        <span class="chip"><i class="bi bi-shield-check"></i><span class="ms-1">Crisis Protocol</span></span>
+      </div>
+      <div class="mt-4">
+        <a href="#about" class="btn btn-primary btn-lg glow"><i class="bi bi-arrow-down"></i> Explore</a>
+        <a href="#emergency" class="btn btn-outline-light btn-lg"><i class="bi bi-exclamation-triangle"></i> Crisis Steps</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="mt-5 pt-4">
+    <!-- About Section -->
+    <section id="about" class="container py-5">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6">
+          <h2 class="mb-3">About Addison's Disease</h2>
+          <p>Primary adrenal insufficiency (Addison’s disease) happens when the adrenal glands do not make enough <strong>cortisol</strong> and often <strong>aldosterone</strong>. These hormones support blood pressure, electrolyte balance, immune function, and the body’s response to stress.</p>
+          <div class="callout mt-3"><i class="bi bi-info-circle me-2"></i><strong>Note:</strong> This page is educational, not medical advice. Always follow guidance from your healthcare team.</div>
+        </div>
+        <div class="col-lg-6">
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="card fact-card h-100">
+                <div class="card-body">
+                  <div class="d-flex align-items-center mb-2"><i class="bi bi-activity me-2"></i><strong>Hormones</strong></div>
+                  <p class="mb-0 small">Low cortisol can cause fatigue, low blood pressure, nausea, and low blood sugar. Low aldosterone can cause low sodium and dizziness.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="card fact-card h-100">
+                <div class="card-body">
+                  <div class="d-flex align-items-center mb-2"><i class="bi bi-people me-2"></i><strong>Who it affects</strong></div>
+                  <p class="mb-0 small">Addison’s is rare and can affect anyone. With treatment, most people live active, full lives.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="card fact-card h-100">
+                <div class="card-body">
+                  <div class="d-flex align-items-center mb-2"><i class="bi bi-check2-square me-2"></i><strong>Essentials</strong></div>
+                  <ul class="small mb-0">
+                    <li>Lifelong hormone replacement (per prescription).</li>
+                    <li>Stress dosing during illness, injury, or surgery.</li>
+                    <li>Carry emergency hydrocortisone and a medical ID.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Symptoms Section -->
+    <section id="symptoms" class="section-soft py-5">
+      <div class="container">
+        <h2 class="mb-4">Common Symptoms</h2>
+        <div class="row g-3">
+          <div class="col-md-4"><div class="card h-100 fact-card"><div class="card-body"><i class="bi bi-battery-half me-2"></i>Fatigue & muscle weakness</div></div></div>
+          <div class="col-md-4"><div class="card h-100 fact-card"><div class="card-body"><i class="bi bi-thermometer-snow me-2"></i>Low blood pressure & dizziness</div></div></div>
+          <div class="col-md-4"><div class="card h-100 fact-card"><div class="card-body"><i class="bi bi-droplet me-2"></i>Salt cravings & dehydration</div></div></div>
+          <div class="col-md-4"><div class="card h-100 fact-card"><div class="card-body"><i class="bi bi-person-bounding-box me-2"></i>Skin darkening (hyperpigmentation)</div></div></div>
+          <div class="col-md-4"><div class="card h-100 fact-card"><div class="card-body"><i class="bi bi-clipboard2-pulse me-2"></i>Nausea, vomiting, or diarrhea</div></div></div>
+          <div class="col-md-4"><div class="card h-100 fact-card"><div class="card-body"><i class="bi bi-graph-down me-2"></i>Low blood sugar (especially in kids)</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Causes Section -->
+    <section id="causes" class="container py-5">
+      <h2 class="mb-3">Causes</h2>
+      <p>The most common cause is <strong>autoimmune adrenalitis</strong>, where the immune system mistakenly attacks the adrenal cortex. Less commonly, infections, genetic conditions, surgery, or hemorrhage can damage adrenal tissue.</p>
+    </section>
+
+    <!-- Treatment & Management -->
+    <section id="treatment" class="section-soft py-5">
+      <div class="container">
+        <h2 class="mb-4">Treatment & Management</h2>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card h-100 fact-card">
+              <div class="card-body">
+                <h3 class="h5"><i class="bi bi-capsule me-2"></i>Daily Medicines</h3>
+                <ul>
+                  <li>Glucocorticoid (e.g., hydrocortisone) per prescription schedule.</li>
+                  <li>Mineralocorticoid (e.g., fludrocortisone) if needed for sodium/potassium balance.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100 fact-card">
+              <div class="card-body">
+                <h3 class="h5"><i class="bi bi-clipboard2-check me-2"></i>Everyday Tips</h3>
+                <ul>
+                  <li>Keep a sick‑day plan from your clinician and follow it closely.</li>
+                  <li>Hydrate and maintain electrolyte balance; monitor symptoms.</li>
+                  <li>Wear a medical ID; inform teachers, coaches, and friends.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Living With Addison's -->
+    <section id="living" class="container py-5">
+      <h2 class="mb-3">Living With Addison's</h2>
+      <p>With appropriate treatment and an emergency plan, people with Addison’s can pursue sports, travel, academics, and careers. Education and preparation help prevent adrenal crises and reduce anxiety for students and families.</p>
+    </section>
+
+    <!-- Emergency Info -->
+    <section id="emergency" class="emergency text-white py-5">
+      <div class="container">
+        <div class="d-flex align-items-center gap-2 mb-2"><span class="badge">Protocol</span><span class="small">Adrenal Crisis — time critical</span></div>
+        <h2 class="mb-3"><i class="bi bi-exclamation-octagon me-2"></i>Emergency: Adrenal Crisis</h2>
+        <div class="row g-4 align-items-stretch">
+          <div class="col-md-6">
+            <div class="p-3 bg-dark bg-opacity-25 rounded-3 h-100">
+              <h3 class="h5">Recognize symptoms</h3>
+              <ul class="mb-0">
+                <li>Severe weakness, vomiting, abdominal pain, fever, or confusion</li>
+                <li>Very low blood pressure, fainting, or collapse</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="p-3 bg-dark bg-opacity-25 rounded-3 h-100">
+              <h3 class="h5">Immediate actions (per care plan)</h3>
+              <ol class="mb-0">
+                <li>Give emergency <strong>hydrocortisone injection</strong> (per dosage instructions).</li>
+                <li>Call <strong>911</strong> and state “adrenal crisis.”</li>
+                <li>Lay person on side; keep warm; monitor breathing.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <p class="mt-3 mb-0 small">Always follow your clinician’s instructions. This is a student educational page.</p>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="container py-5">
+      <h2 class="mb-4">Frequently Asked Questions</h2>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="h1">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1" aria-expanded="true" aria-controls="q1">
+              Is Addison's disease curable?
+            </button>
+          </h2>
+          <div id="q1" class="accordion-collapse collapse show" aria-labelledby="h1" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">Not currently. It is manageable long‑term with prescribed medicines, stress‑dosing plans, and emergency preparation.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="h2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2" aria-expanded="false" aria-controls="q2">
+              How common is it?
+            </button>
+          </h2>
+          <div id="q2" class="accordion-collapse collapse" aria-labelledby="h2" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">It’s considered rare. With the right treatment, people with Addison’s typically live active lives.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="h3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3" aria-expanded="false" aria-controls="q3">
+              What is “stress dosing”?
+            </button>
+          </h2>
+          <div id="q3" class="accordion-collapse collapse" aria-labelledby="h3" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">Temporarily increasing glucocorticoid dose during illness, fever, injury, or other stressors, following a clinician‑approved plan.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources" class="section-soft py-5">
+      <div class="container">
+        <h2 class="mb-3">Helpful Resources</h2>
+        <ul class="list-unstyled">
+          <li class="mb-2"><i class="bi bi-box-arrow-up-right me-2"></i><a href="https://www.niddk.nih.gov/health-information/endocrine-diseases/addisons-disease" target="_blank" rel="noopener">NIH — Addison’s Disease</a></li>
+          <li class="mb-2"><i class="bi bi-box-arrow-up-right me-2"></i><a href="https://www.endocrine.org/patient-engagement/endocrine-library/addisons-disease" target="_blank" rel="noopener">Endocrine Society — Patient Library</a></li>
+          <li class="mb-2"><i class="bi bi-box-arrow-up-right me-2"></i><a href="https://www.addisons.org.uk/" target="_blank" rel="noopener">Addison’s Disease Self‑Help Group (UK)</a></li>
+        </ul>
+        <div class="small text-muted">Links are provided for education only; always consult your healthcare provider.</div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container py-5">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <h2 class="mb-3">Contact</h2>
+          <p class="mb-3">Questions or feedback? I welcome comments from teachers, counselors, and students.</p>
+          <form id="contactForm" class="needs-validation" novalidate>
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" required aria-describedby="nameHelp">
+              <div class="invalid-feedback">Please enter your name.</div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" required>
+              <div class="invalid-feedback">A valid email is required.</div>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" rows="4" required></textarea>
+              <div class="invalid-feedback">Please include a short message.</div>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Send</button>
+            <small class="text-muted ms-2">This form opens your email program (no data is stored).</small>
+          </form>
+        </div>
+        <div class="col-lg-6">
+          <div class="card h-100 fact-card">
+            <div class="card-body">
+              <h3 class="h5 mb-3"><i class="bi bi-file-earmark-text me-2"></i>About This Project</h3>
+              <p class="mb-2">Created as part of an independent study to translate medical concepts into student‑friendly language and crisis‑ready steps.</p>
+              <ul class="small mb-0">
+                <li>Audience: middle/high‑school students, families, teachers</li>
+                <li>Focus: clarity, accessibility, credible sources</li>
+                <li>Skills: research, writing, health communication, web design</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-4 mt-5">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+        <div>
+          <strong>Addison's Disease Awareness</strong>
+          <div class="tiny">© 2024 • Built by Mia Anderson • Educational use only</div>
+        </div>
+        <div class="tiny">Last updated: Dec 2024</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="scrollTopBtn" class="btn btn-primary" aria-label="Scroll to top"><i class="bi bi-arrow-up"></i></button>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Show/hide back-to-top button
+    const topBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      topBtn.style.display = window.scrollY > 300 ? 'inline-flex' : 'none';
+    });
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Activate current nav link on scroll (helps admissions skim)
+    const navLinks = document.querySelectorAll('#navbar .nav-link');
+    const sections = [...navLinks].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const activate = () => {
+      const pos = window.scrollY + 120;
+      sections.forEach((sec, i) => {
+        const link = navLinks[i];
+        if (sec.offsetTop <= pos && sec.offsetTop + sec.offsetHeight > pos) link.classList.add('active');
+        else link.classList.remove('active');
+      });
+    };
+    document.addEventListener('scroll', activate, { passive: true });
+    window.addEventListener('load', activate);
+
+    // Simple client-side form handler that composes an email (no backend required)
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.classList.add('was-validated'); return; }
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      const subject = encodeURIComponent("Addison's Awareness — Message from " + name);
+      const body = encodeURIComponent("From: " + name + " (" + email + ")\n\n" + msg);
+      window.location.href = `mailto:youremail@example.com?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
